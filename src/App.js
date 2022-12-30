@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 //import "@aws-amplify/ui-react/styles.css";
 import { Storage } from 'aws-amplify';
 import { API } from "aws-amplify";
@@ -107,11 +107,6 @@ function Upload() {
       }, function(err) {
         console.log('Failed to copy');
       })};
-
-    //async function file() {
-      //const result = await Storage.get(key)
-      //}
-     // file()
   
   
   const [models, setData] = useState([0]);
@@ -128,9 +123,44 @@ function Upload() {
 
     }, []);
 
+  const [imagess, setDescription] = useState([0]);
+
+  useEffect(() => {
+
+    async function isIt() {
+      const imagess = await DataStore.query(Image, c => c.image.contains(key));
+      const description = imagess.map(imagess => imagess.description)
+      setDescription(description);
+      console.log(description);
+      const swag = `${description}`;
+      const word = swag.includes('video');
+
+     if (word == true) {
+      console.log("true")
+     } else {
+      console.log("false")
+     }
+    }
+    isIt();
+
+    }, []);
+
+    const [namess, setName] = useState([0]);
+    const firstRender = useRef(true);
+    useEffect(() => {
+      firstRender.current = false;
+      async function checkName() {
+        const namess = await DataStore.query(Image, c => c.image.contains(key));
+        const rname = namess.map(namess => namess.name)
+        setName(rname);
+        console.log(rname);
+      }
+      checkName();
+  
+      }, []);
 
    
-   
+    const titleName = namess;
     const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`;
     
     return (
@@ -141,7 +171,7 @@ function Upload() {
       <div className="sendTo">
         <div className="linkCopied1" id="link1">Link Copied!</div>
         <div className="linkCopied" id="link">Link Copied!</div>
-        <button className="share" onClick={copyToClipboard}> <i class="fa-solid fa-share" ></i> </button>  
+        <button className="share" onClick={copyToClipboard}> <i class="fa-solid fa-share"></i> </button>  
        </div>
 
 
@@ -149,7 +179,8 @@ function Upload() {
 <img className="imgSrc" id="imgSrcz" src={imgUrl}/>
       
       <div className="meta">
-      <h1 className="description">{models.map(models => <div>{models.name}</div>)}</h1>
+     
+      <h1 className="description"><div>{titleName}</div></h1>
       <div className="logo"><img className="logoimg" src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/uploadi.png" /></div>
       </div>
       </div>
