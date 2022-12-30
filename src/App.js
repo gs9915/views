@@ -5,16 +5,19 @@ import { Storage } from 'aws-amplify';
 import { API } from "aws-amplify";
 import { DataStore } from '@aws-amplify/datastore';
 import { Image } from './models';
-import { Helmet } from 'react-helmet';
 
 
 
 
 function Upload() {
   // onChange
+
+
   
   async function onChange(e) {
   const file = e.target.files[0];
+  var extension = e.target.files[0].type
+  console.log(extension)
   
   // makeid
   function makeid(length) {
@@ -33,7 +36,7 @@ function Upload() {
     new Image({
 		"image": `${result.key}`,
 		"name": "name",
-		"description": "desc"
+		"description": `${extension}`
 	})
 );
   window.x = result.key;
@@ -72,14 +75,14 @@ function Upload() {
 
   return (
   <div className="App">
-    <Helmet>
+   
     <script src="https://kit.fontawesome.com/e6bb64b9ef.js" crossorigin="anonymous"></script>
-    </Helmet>
+    
   <form className='forms'>
     <table>
     <tbody>
-      <tr><th><label id="submit" class="custom-file-upload"><input type="file" onChange={onChange}/>Select File</label></th></tr>
-      <tr><th><div id="uploaded" class="custom-file-uploaded">File Uploaded</div></th></tr>
+      <tr><th><label id="submit" className="custom-file-upload"><input type="file" onChange={onChange}/>Select File</label></th></tr>
+      <tr><th><div id="uploaded" className="custom-file-uploaded">File Uploaded</div></th></tr>
       <tr><th><input className="textInput" id="userInput" name="text" placeholder="Type File Description" type="text"/></th></tr>
       <tr><th><input id="uploaded1" className="button" type="button" value="Post Content" onClick={onSubmit}/></th></tr>
     </tbody>
@@ -109,11 +112,12 @@ function Upload() {
       //const result = await Storage.get(key)
       //}
      // file()
-    const [models, setData] = useState([]);
+  
+  
+  const [models, setData] = useState([0]);
 
-    //useEffect(() => {
-       //just like before, increment the value of Count
-    
+  useEffect(() => {
+
     async function query() {
       const models = await DataStore.query(Image, c => c.image.contains(key));
       setData(models);
@@ -121,32 +125,29 @@ function Upload() {
       return models;
       }
       query()
-   // }, []);
 
+    }, []);
+
+
+   
+   
     const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`;
     
     return (
       
       <div className="App">
-        <Helmet>
-        <title>uploadi</title>
-        <meta property="og:title" content={models.map(models => <div>{models.name}</div>)}></meta>
-        <meta name="twitter:title" content={models.map(models => <div>{models.name}</div>)}></meta>
-        <meta name="description" content="Share great media with uploadi"></meta>
-        <meta property="og:description" content="Share great media with uploadi"></meta>
-        <meta name="twitter:description" content="Share great media with uploadi"></meta>
-        <meta property="og:image" content={imgUrl}></meta>
-        <meta name="twitter:image" content={imgUrl}></meta>
-        <script src="https://kit.fontawesome.com/e6bb64b9ef.js" crossorigin="anonymous"></script>
-        </Helmet>
+
       <div className="Image">
       <div className="sendTo">
         <div className="linkCopied1" id="link1">Link Copied!</div>
         <div className="linkCopied" id="link">Link Copied!</div>
         <button className="share" onClick={copyToClipboard}> <i class="fa-solid fa-share" ></i> </button>  
        </div>
-       
-      <img className="imgSrc" src={`https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`}/>
+
+
+
+<img className="imgSrc" id="imgSrcz" src={imgUrl}/>
+      
       <div className="meta">
       <h1 className="description">{models.map(models => <div>{models.name}</div>)}</h1>
       <div className="logo"><img className="logoimg" src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/uploadi.png" /></div>

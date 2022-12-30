@@ -1,0 +1,29 @@
+
+      function isIt() {
+        console.log(description);
+        const swag = `${description}`;
+        const word = swag.includes('video');
+  
+       if (word == true) {
+        document.getElementById('videoo').style.display="block";
+        document.getElementById('imgSrcz').style.display="none";
+       } else {
+        document.getElementById('videoo').style.display="none";
+        document.getElementById('imgSrcz').style.display="block";
+       }
+      }
+      isIt();
+
+
+ 
+      const description = models.map(models => models.description)
+      setDescription(description);
+
+      <div id="videoo">
+<video controls
+    width="250"
+    height="200"
+    muted>
+<source src={imgUrl}></source>
+</video>
+</div>
