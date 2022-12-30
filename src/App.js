@@ -73,7 +73,7 @@ function Upload() {
   <form className='forms'>
     <table>
     <tbody>
-      <tr><th><input type="file" onChange={onChange}/></th></tr>
+      <tr><th><label class="custom-file-upload"><input type="file" onChange={onChange}/>Select Image</label></th></tr>
       <tr><th><input className="textInput" id="userInput" name="text" placeholder="Description" type="text"/></th></tr>
       <tr><th><input className="button" type="button" onClick={onSubmit}/></th></tr>
     </tbody>
@@ -110,9 +110,9 @@ function Upload() {
     }, []);
     return (
       <div className="App">
-      <h1>{models.map(models => <div>{models.name}</div>)}</h1>
       <div className="Image" style={{ maxWidth:600, }}>
-      <img src={`https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`}/>
+      <img className="imgSrc" src={`https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`}/>
+      <h1>{models.map(models => <div>{models.name}</div>)}</h1>
       </div>
       </div>
     )

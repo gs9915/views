@@ -59,14 +59,35 @@ td {
     height: 60px;
     border: none;
     border-bottom: 10px solid #c3dfff;
-    font-size: 3em;
+    font-size: 2em;
     font-weight: 700;
+    text-align:center;
 }
 
 table {
   margin: 0 auto; /* or margin: 0 auto 0 auto */
 }
 
+.imgSrc {
+  width:100%;
+}
+
+.custom-file-upload {
+  border: none;
+  display: inline-block;
+  padding: 6px 12px;
+  width:100%;
+  height:50px;
+  background-color:#00f;
+  cursor: pointer;
+  color:#fff;
+  font-size:2em;
+  text-align:center;
+}
+
+input[type="file"] {
+  display: none;
+}
 
 .App-link {
   color: #61dafb;
