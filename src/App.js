@@ -124,9 +124,9 @@ function Upload() {
     }, []);
 
   const [imagess, setDescription] = useState([0]);
-
+  const renderSrc = useRef(true);
   useEffect(() => {
-
+    renderSrc.current = false;
     async function isIt() {
       const imagess = await DataStore.query(Image, c => c.image.contains(key));
       const description = imagess.map(imagess => imagess.description)
@@ -136,9 +136,11 @@ function Upload() {
       const word = swag.includes('video');
 
      if (word == true) {
-      console.log("true")
+      document.getElementById('videoo').style.display="block";
+      document.getElementById('imgSrcz').style.display="none";
      } else {
-      console.log("false")
+      document.getElementById('videoo').style.display="none";
+      document.getElementById('imgSrcz').style.display="block";
      }
     }
     isIt();
@@ -174,10 +176,16 @@ function Upload() {
         <button className="share" onClick={copyToClipboard}> <i class="fa-solid fa-share"></i> </button>  
        </div>
 
+      <div id="videoo">
+      <video className="vidSrc" controls muted>
+        <source src={imgUrl}></source>
+      </video>
+      </div>
 
+      <div id="imgSrcz">
+      <img className="imgSrc" src={imgUrl}/>
+      </div>
 
-<img className="imgSrc" id="imgSrcz" src={imgUrl}/>
-      
       <div className="meta">
      
       <h1 className="description"><div>{titleName}</div></h1>

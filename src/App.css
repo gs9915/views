@@ -72,7 +72,6 @@ h1{
     color: #fff;
   display: none;
 }
-
 .Image {margin: auto;width:80%;max-width:400px;max-height:700px;min-width:300px;}
 
 input {
@@ -101,21 +100,21 @@ td {
   opacity:0;
   animation-name: animation;
   animation-duration: 3s;
-  width:76%;
+  width:70%;
   line-height: 4.35;
   text-align:right;
-  padding-right:10px;
   color:rgb(0, 217, 36);
   font-style: italic;
   font-size: 1em;
-  font-weight: 800;
+  font-weight: 500;
+  margin-right:20px;
 }
 .linkCopied1{
   display:block;
   opacity:0;
-  width:76%;
+  width:70%;
   text-align: right;
-  padding-right:10px;
+  margin-right:20px;
   font-size: 1em;
   font-weight: 500;
 }
@@ -159,6 +158,12 @@ table {
 }
 
 .imgSrc {
+  width:100%;
+  border-radius:10px;
+  border:1px solid rgb(183, 183, 183);
+}
+
+.vidSrc {
   width:100%;
   border-radius:10px;
   border:1px solid rgb(183, 183, 183);
