@@ -60,15 +60,20 @@ h1{
 }
 
 .button {
-  width:200px;
-  height:200px;
-  background-color:rgb(0, 34, 255);
-  border-radius:200px;
-  border:none;
-  margin: 0;
+  width: 150px;
+  height: 30px;
+  background-color: #7428ff;
+  border-radius: 200px;
+  border: none;
+  margin: 0 auto;
+  margin-top: 1em;
+  font-size: 1em;
+    font-weight: 700;
+    color: #fff;
+  display: none;
 }
 
-.Image {margin: auto;width:80%;max-width:400px;max-height:1000px;min-width:300px;}
+.Image {margin: auto;width:80%;max-width:400px;max-height:700px;min-width:300px;}
 
 input {
   vertical-align: top;
@@ -79,11 +84,11 @@ td {
 }
 
 .textInput {
-  width: 80%;
+  width: 300px;
     height: 50px;
     border: none;
-    border-bottom: 10px solid #c3dfff;
-    font-size: 2em;
+    border-bottom: 3px solid #7328ff2e;
+    font-size: 1em;
     font-weight: 700;
     text-align:center;
     background-color: rgb(239, 239, 239);
@@ -166,27 +171,30 @@ input[type="text" i] {
 .custom-file-upload {
   border: none;
   display: inline-block;
-  width:80%;
-  height:60px;
-  background-color:#00f;
+  border-radius: 50px;
+  width: 150px;
+  height: 30px;
+  background-color: #7428ff;
   cursor: pointer;
-  color:#fff;
-  font-size:2em;
-  text-align:center;
+  color: #fff;
+  font-size: 1em;
+  text-align: center;
   line-height: 1.7;
 }
 
 .custom-file-uploaded {
   border: none;
   display: inline-block;
-  width:80%;
-  height:60px;
-  color:rgb(0, 255, 0);
+  border-radius: 50px;
+  width:150px;
+  height:30px;
+  color:#7428ff;
   display:none;
   cursor: pointer;
-  font-size:2em;
+  font-size:1em;
   text-align:center;
   line-height: 1.7;
+  margin: 0 auto;
 }
 
 input[type="file"] {

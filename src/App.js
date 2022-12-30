@@ -40,6 +40,7 @@ function Upload() {
   console.log(window.x)
   document.getElementById("submit").style.display="none";
   document.getElementById("uploaded").style.display="block";
+  document.getElementById("uploaded1").style.display="block";
   return window.x;
   }
   // onChange
@@ -72,13 +73,16 @@ function Upload() {
 
   return (
   <div className="App">
+    <Helmet>
+    <script src="https://kit.fontawesome.com/e6bb64b9ef.js" crossorigin="anonymous"></script>
+    </Helmet>
   <form className='forms'>
     <table>
     <tbody>
-      <tr><th><label id="submit" class="custom-file-upload"><input type="file" onChange={onChange}/>Select Image</label></th></tr>
-      <tr><th><div id="uploaded" class="custom-file-uploaded">Uploaded</div></th></tr>
-      <tr><th><input className="textInput" id="userInput" name="text" placeholder="Description" type="text"/></th></tr>
-      <tr><th><input className="button" type="button" onClick={onSubmit}/></th></tr>
+      <tr><th><label id="submit" class="custom-file-upload"><input type="file" onChange={onChange}/>Select File</label></th></tr>
+      <tr><th><div id="uploaded" class="custom-file-uploaded">File Uploaded</div></th></tr>
+      <tr><th><input className="textInput" id="userInput" name="text" placeholder="Type File Description" type="text"/></th></tr>
+      <tr><th><input id="uploaded1" className="button" type="button" value="Post Content" onClick={onSubmit}/></th></tr>
     </tbody>
     </table>
     
