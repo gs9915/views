@@ -66,7 +66,6 @@ function Upload() {
       })
     );
     console.log(window.x)
-    console.log("sex")
     window.location.assign(`${window.x}`);
    // alert(urlVal);
   }
@@ -112,7 +111,7 @@ function Upload() {
      // file()
     const [models, setData] = useState([]);
 
-    useEffect(() => {
+    //useEffect(() => {
        //just like before, increment the value of Count
     
     async function query() {
@@ -122,7 +121,7 @@ function Upload() {
       return models;
       }
       query()
-    }, []);
+   // }, []);
 
     const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`;
     
