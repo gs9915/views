@@ -8,6 +8,7 @@ import { Image } from './models';
 
 
 
+
 function Upload() {
   // onChange
   
@@ -36,6 +37,8 @@ function Upload() {
 );
   window.x = result.key;
   console.log(window.x)
+  document.getElementById("submit").style.display="none";
+  document.getElementById("uploaded").style.display="block";
   return window.x;
   }
   // onChange
@@ -68,12 +71,11 @@ function Upload() {
 
   return (
   <div className="App">
-  <div style={{ display: 'flex', flexDirection: 'column' }}>
-  </div>
   <form className='forms'>
     <table>
     <tbody>
-      <tr><th><label class="custom-file-upload"><input type="file" onChange={onChange}/>Select Image</label></th></tr>
+      <tr><th><label id="submit" class="custom-file-upload"><input type="file" onChange={onChange}/>Select Image</label></th></tr>
+      <tr><th><div id="uploaded" class="custom-file-uploaded">Uploaded</div></th></tr>
       <tr><th><input className="textInput" id="userInput" name="text" placeholder="Description" type="text"/></th></tr>
       <tr><th><input className="button" type="button" onClick={onSubmit}/></th></tr>
     </tbody>
@@ -90,6 +92,14 @@ function Upload() {
   function VView() {
     const key = window.location.pathname.slice(1);
     console.log(key)
+
+    const copyToClipboard = () => {
+      navigator.clipboard.writeText(window.location.href).then(function() {
+        document.getElementById("link1").style.display="none";
+        document.getElementById("link").style.display="block";
+      }, function(err) {
+        console.log('Failed to copy');
+      })};
 
     //async function file() {
       //const result = await Storage.get(key)
@@ -108,11 +118,22 @@ function Upload() {
       }
       query()
     }, []);
+    
     return (
+      
       <div className="App">
-      <div className="Image" style={{ maxWidth:600, }}>
+
+      <div className="Image">
+      <div className="sendTo">
+        <div className="linkCopied1" id="link1">Link Copied!</div>
+        <div className="linkCopied" id="link">Link Copied!</div>
+        <button className="share" onClick={copyToClipboard}> + </button>  
+       </div>
       <img className="imgSrc" src={`https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`}/>
-      <h1>{models.map(models => <div>{models.name}</div>)}</h1>
+      <div className="meta">
+      <h1 className="description">{models.map(models => <div>{models.name}</div>)}</h1>
+      <div className="logo"><img className="logoimg" src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/uploadi.png" /></div>
+      </div>
       </div>
       </div>
     )
