@@ -5,6 +5,7 @@ import { Storage } from 'aws-amplify';
 import { API } from "aws-amplify";
 import { DataStore } from '@aws-amplify/datastore';
 import { Image } from './models';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -118,17 +119,30 @@ function Upload() {
       }
       query()
     }, []);
+
+    const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`;
     
     return (
       
       <div className="App">
-
+        <Helmet>
+        <title>uploadi</title>
+        <meta property="og:title" content={models.map(models => <div>{models.name}</div>)}></meta>
+        <meta name="twitter:title" content={models.map(models => <div>{models.name}</div>)}></meta>
+        <meta name="description" content="Share great media with uploadi"></meta>
+        <meta property="og:description" content="Share great media with uploadi"></meta>
+        <meta name="twitter:description" content="Share great media with uploadi"></meta>
+        <meta property="og:image" content={imgUrl}></meta>
+        <meta name="twitter:image" content={imgUrl}></meta>
+        <script src="https://kit.fontawesome.com/e6bb64b9ef.js" crossorigin="anonymous"></script>
+        </Helmet>
       <div className="Image">
       <div className="sendTo">
         <div className="linkCopied1" id="link1">Link Copied!</div>
         <div className="linkCopied" id="link">Link Copied!</div>
-        <button className="share" onClick={copyToClipboard}> + </button>  
+        <button className="share" onClick={copyToClipboard}> <i class="fa-solid fa-share" ></i> </button>  
        </div>
+       
       <img className="imgSrc" src={`https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`}/>
       <div className="meta">
       <h1 className="description">{models.map(models => <div>{models.name}</div>)}</h1>
