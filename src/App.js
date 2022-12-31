@@ -114,111 +114,75 @@ function Upload() {
         console.log('Failed to copy');
       })};
   
-  
-  const [models, setData] = useState([0]);
-
-  useLayoutEffect(() => {
-
-    async function query() {
-      const models = await DataStore.query(Image, c => c.image.contains(key));
-      setData(models);
-      console.log(models);
-      return models;
-      }
-      query()
-
-    }, []);
-
-  const [imagess, setDescription] = useState([0]);
-  const renderSrc = useRef(true);
-  useLayoutEffect(() => {
-    renderSrc.current = false;
-    async function isIt() {
-      const imagess = await DataStore.query(Image, c => c.image.contains(key));
-      const description = imagess.map(imagess => imagess.description)
-      setDescription(description);
-      console.log(description);
-      const swag = `${description}`;
-      const word = swag.includes('video');
-
-     if (word == true) {
-      document.getElementById('videoo').style.display="block";
-      document.getElementById('imgSrcz').style.display="none";
-     } else {
-      document.getElementById('videoo').style.display="none";
-      document.getElementById('imgSrcz').style.display="block";
-     }
-    }
-    isIt();
-
-    }, []);
-
-    const [namess, setName] = useState([0]);
-    const firstRender = useRef(true);
-    useLayoutEffect(() => {
-      firstRender.current = false;
-      async function checkName() {
-        const namess = await DataStore.query(Image, c => c.image.contains(key));
-        const rname = namess.map(namess => namess.name)
-        setName(rname);
-        console.log(rname);
-      }
-      checkName();
-  
-      }, []);
-
+      const [models, setData] = useState([0]);
+      const [imagess, setDescription] = useState([0]);
+      const [namess, setName] = useState([0]);
       const [filenamess, setFileName] = useState([0]);
-      const firstRenders = useRef(true);
+      const [getKeyss, setKeyss] = useState([0]);
+
+      const videoRef = useRef(null);
+      const [playing, setPlaying] = useState(false);
+      const [currentTime, setCurrentTime] = useState(0);
+      const [videoTime, setVideoTime] = useState(0);
+    
+      const renderSrc = useRef(true);
+    
       useLayoutEffect(() => {
-        firstRenders.current = false;
-        async function checkFileName() {
-          const filenamess = await DataStore.query(Image, c => c.image.contains(key));
-          const fname = filenamess.map(filenamess => filenamess.filename)
-          setFileName(fname);
-          console.log(fname);
-        }
-        checkFileName();
+    
+        renderSrc.current = false;
+    
+        async function query() {
+            const models = await DataStore.query(Image, c => c.image.contains(key));
+            setData(models);
+            console.log(models);
+    
+            const description = models.map(models => models.description)
+            setDescription(description);
+            console.log(description);
+          
+            const swag = `${description}`;
+            const word = swag.includes('video');
+    
+                if (word == true) {
+                    document.getElementById('videoo').style.display="block";
+                    document.getElementById('imgSrcz').style.display="none";
+                } else {
+                    document.getElementById('videoo').style.display="none";
+                    document.getElementById('imgSrcz').style.display="block";
+                }
+    
+            const rname = models.map(models => models.name)
+            setName(rname);
+            console.log(rname);
+    
+            const fname = models.map(models => models.filename)
+            setFileName(fname);
+            console.log(fname);
+    
+            const gKey = models.map(models => models.image)
+            setKeyss(gKey);
+            console.log("got Key", gKey);
+    
+          return;
+          }
+    
+          query();
     
         }, []);
-
-    const realKey = filenamess;
-    console.log(realKey)
-
-    const [getKeyss, setKeyss] = useState([0]);
-    const firstRenderss = useRef(true);
-    useLayoutEffect(() => {
-      firstRenderss.current = false;
-      async function checkKeyss() {
-        const keyss = await DataStore.query(Image, c => c.image.contains(key));
-        const gKey = keyss.map(keyss => keyss.image)
-        setKeyss(gKey);
-        console.log("got Key", gKey);
-      }
-      checkKeyss();
-  
-      }, []);
-
-    const videoRef = useRef(null);
-    const [playing, setPlaying] = useState(false);
-    const [currentTime, setCurrentTime] = useState(0);
-    const [videoTime, setVideoTime] = useState(0);
-
-    const videoHandler = (control) => {
-      if (control === "play") {
+    
+      const videoHandler = (control) => {
+        if (control === "play") {
         videoRef.current.play();
         setPlaying(true);
         var vid = document.getElementById("video1");
         setVideoTime(vid.duration);
-      } else if (control === "pause") {
-        videoRef.current.pause();
-        setPlaying(false);
-      }
-    };
+        } else if (control === "pause") {
+          videoRef.current.pause();
+          setPlaying(false);
+        }
+      };
 
 
-
-    const realKeys = getKeyss;
-    console.log(realKeys);
     const titleName = namess;
     const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`
     const vidUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}#t=0.1`;;
@@ -232,7 +196,7 @@ function Upload() {
 
       <div id="videoo">
 
-      <video ref={videoRef} id="video1" className="vidSrc"  unmuted loop playsInline preload="auto" controlsList="nofullscreen nodownload">
+      <video ref={videoRef} id="video1" className="vidSrc" loop playsInline preload="auto" controlsList="nofullscreen nodownload">
       
         <source src={vidUrl}></source>
       </video>

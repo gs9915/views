@@ -1,0 +1,105 @@
+
+  
+
+  
+
+
+
+    const realKey = filenamess;
+    console.log(realKey)
+
+    useLayoutEffect(() => {
+     
+      async function checkKeyss() {
+        const keyss = await DataStore.query(Image, c => c.image.contains(key));
+
+      }
+      checkKeyss();
+  
+      }, []);
+
+
+
+
+      const [models, setData] = useState([0]);
+
+  useLayoutEffect(() => {
+
+    async function query() {
+      const models = await DataStore.query(Image, c => c.image.contains(key));
+      setData(models);
+      console.log(models);
+      return models;
+      }
+      query()
+
+    }, []);
+
+  const [imagess, setDescription] = useState([0]);
+  const renderSrc = useRef(true);
+  useLayoutEffect(() => {
+    renderSrc.current = false;
+    async function isIt() {
+      const imagess = await DataStore.query(Image, c => c.image.contains(key));
+      const description = imagess.map(imagess => imagess.description)
+      setDescription(description);
+      console.log(description);
+      const swag = `${description}`;
+      const word = swag.includes('video');
+
+     if (word == true) {
+      document.getElementById('videoo').style.display="block";
+      document.getElementById('imgSrcz').style.display="none";
+     } else {
+      document.getElementById('videoo').style.display="none";
+      document.getElementById('imgSrcz').style.display="block";
+     }
+    }
+    isIt();
+
+    }, []);
+
+    const [namess, setName] = useState([0]);
+    const firstRender = useRef(true);
+    useLayoutEffect(() => {
+      firstRender.current = false;
+      async function checkName() {
+        const namess = await DataStore.query(Image, c => c.image.contains(key));
+        const rname = namess.map(namess => namess.name)
+        setName(rname);
+        console.log(rname);
+      }
+      checkName();
+  
+      }, []);
+
+      const [filenamess, setFileName] = useState([0]);
+      const firstRenders = useRef(true);
+      useLayoutEffect(() => {
+        firstRenders.current = false;
+        async function checkFileName() {
+          const filenamess = await DataStore.query(Image, c => c.image.contains(key));
+          const fname = filenamess.map(filenamess => filenamess.filename)
+          setFileName(fname);
+          console.log(fname);
+        }
+        checkFileName();
+    
+        }, []);
+
+    const realKey = filenamess;
+    console.log(realKey)
+
+    const [getKeyss, setKeyss] = useState([0]);
+    const firstRenderss = useRef(true);
+    useLayoutEffect(() => {
+      firstRenderss.current = false;
+      async function checkKeyss() {
+        const keyss = await DataStore.query(Image, c => c.image.contains(key));
+        const gKey = keyss.map(keyss => keyss.image)
+        setKeyss(gKey);
+        console.log("got Key", gKey);
+      }
+      checkKeyss();
+  
+      }, []);
