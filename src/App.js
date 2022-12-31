@@ -172,11 +172,12 @@ function Upload() {
     
         }, []);
 
-        const [_, forceUpdate] = useReducer((x) => x + 1, 0);
+       
+      const forceUpdate = React.useReducer(() => ({}))[1]
 
       function errorCheck() {
       if (namess.length === 0) {
-        renderSrc.current = false;
+        forceUpdate()
       }
     }
     errorCheck()
