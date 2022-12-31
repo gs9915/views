@@ -128,13 +128,20 @@ function Upload() {
       const [currentTime, setCurrentTime] = useState(0);
       const [videoTime, setVideoTime] = useState(0);
       const firstUpdate = useRef(true);
-
+      const [setStates, setCount] = useState(false);
 
     
         async function query() {
+
+
+          const statez = true;
+          setCount(statez);
+
             const models = await DataStore.query(Image, c => c.image.contains(key));
             setData(models);
             console.log(models);
+
+
     
             const description = models.map(models => models.description)
             setDescription(description);
@@ -166,7 +173,10 @@ function Upload() {
           }
           
 
-          useEffect(() => {query();}, []);
+          useEffect(() => {
+            query();
+
+          }, [setStates]);
          
     
       const videoHandler = (control) => {
