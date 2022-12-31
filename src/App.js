@@ -201,7 +201,8 @@ function Upload() {
     const realKeys = getKeyss;
     console.log(realKeys);
     const titleName = namess;
-    const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`;
+    const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`
+    const vidUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}#t=0.1`;;
     
     return (
       
@@ -215,8 +216,8 @@ function Upload() {
        </div>
 
       <div id="videoo">
-      <video className="vidSrc" controls muted loop playsInline controlsList="nofullscreen nodownload">
-        <source src={imgUrl}></source>
+      <video className="vidSrc" controls muted loop playsInline preload="auto" controlsList="nofullscreen nodownload">
+        <source src={vidUrl}></source>
       </video>
       </div>
 
