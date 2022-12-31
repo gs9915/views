@@ -125,11 +125,6 @@ function Upload() {
       const [currentTime, setCurrentTime] = useState(0);
       const [videoTime, setVideoTime] = useState(0);
     
-      const renderSrc = useRef(true);
-    
-      useLayoutEffect(() => {
-    
-        renderSrc.current = false;
     
         async function query() {
             const models = await DataStore.query(Image, c => c.image.contains(key));
@@ -170,17 +165,10 @@ function Upload() {
     
           query();
     
-        }, []);
+      
 
        
-      const forceUpdate = React.useReducer(() => ({}))[1]
-
-      function errorCheck() {
-      if (namess.length === 0) {
-        forceUpdate()
-      }
-    }
-    errorCheck()
+     
     
       const videoHandler = (control) => {
         if (control === "play") {
