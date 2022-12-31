@@ -104,13 +104,7 @@ function Upload() {
   );
   }
 
-  function useForceUpdate(){
-    const [value, setValue] = useState(0); // integer state
-    console.log("updated");
-    return () => setValue(value => value + 1); // update state to force render
-    // An function that increment 👆🏻 the previous state like here 
-    // is better than directly setting `value + 1`
-}
+
 
   function VView() {
     const key = window.location.pathname.slice(1);
@@ -175,11 +169,28 @@ function Upload() {
           return;
           }
           
+
+          const [isLoading, setIsLoading] = useState(true);
+          const [data, setDatas] = useState([]);
+
           useEffect(() => {
-            query();
-          }, []);
-          
-          const forceUpdate = useForceUpdate();
+            // Create function inside useEffect so that the function is only
+            // created everytime the useEffect runs and not every render.
+            const fetchData = async () => {
+                const resultkey = await query();
+                setDatas(resultkey);
+                setIsLoading(false);
+                query();
+                // setData will update state asynchronously.
+                // Log the value stored instead.
+                console.log(resultkey);
+            };
+        
+            //Run data fetching function.
+            fetchData();
+        
+          }, 
+          [setDatas, setIsLoading]);
          
     
       const videoHandler = (control) => {
