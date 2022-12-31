@@ -77,7 +77,7 @@ function Upload() {
       })
     );
     console.log(window.x)
-    window.location.assign(`${window.x}`);
+    window.location.replace(`${window.x}`);
    // alert(urlVal);
   }
 
