@@ -108,7 +108,7 @@ function Upload() {
 
   function VView() {
     const key = window.location.pathname.slice(1);
-    console.log(key)
+  
 
     const copyToClipboard = () => {
       navigator.clipboard.writeText(window.location.href).then(function() {
@@ -138,7 +138,6 @@ function Upload() {
     
             const description = models.map(models => models.description)
             setDescription(description);
-            console.log(description);
           
             const swag = `${description}`;
             const word = swag.includes('video');
@@ -153,44 +152,21 @@ function Upload() {
     
             const rname = models.map(models => models.name)
             setName(rname);
-            console.log(rname);
 
             
     
             const fname = models.map(models => models.filename)
             setFileName(fname);
-            console.log(fname);
-    
+
             const gKey = models.map(models => models.image)
             setKeyss(gKey);
-            console.log("got Key", gKey);
             
              
           return;
           }
           
 
-          const [isLoading, setIsLoading] = useState(true);
-          const [data, setDatas] = useState([]);
-
-          useEffect(() => {
-            // Create function inside useEffect so that the function is only
-            // created everytime the useEffect runs and not every render.
-            const fetchData = async () => {
-                const resultkey = await query();
-                setDatas(resultkey);
-                setIsLoading(false);
-                query();
-                // setData will update state asynchronously.
-                // Log the value stored instead.
-                console.log(resultkey);
-            };
-        
-            //Run data fetching function.
-            fetchData();
-        
-          }, 
-          [setDatas, setIsLoading]);
+          useEffect(() => {query();}, [key]);
          
     
       const videoHandler = (control) => {
