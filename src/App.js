@@ -198,6 +198,25 @@ function Upload() {
   
       }, []);
 
+    const videoRef = useRef(null);
+    const [playing, setPlaying] = useState(false);
+    const [currentTime, setCurrentTime] = useState(0);
+    const [videoTime, setVideoTime] = useState(0);
+
+    const videoHandler = (control) => {
+      if (control === "play") {
+        videoRef.current.play();
+        setPlaying(true);
+        var vid = document.getElementById("video1");
+        setVideoTime(vid.duration);
+      } else if (control === "pause") {
+        videoRef.current.pause();
+        setPlaying(false);
+      }
+    };
+
+
+
     const realKeys = getKeyss;
     console.log(realKeys);
     const titleName = namess;
@@ -216,9 +235,30 @@ function Upload() {
        </div>
 
       <div id="videoo">
-      <video className="vidSrc" controls muted loop playsInline preload="auto" controlsList="nofullscreen nodownload">
+
+      <video ref={videoRef} id="video1" className="vidSrc" unmuted loop playsInline preload="auto" controlsList="nofullscreen nodownload">
+      
         <source src={vidUrl}></source>
       </video>
+      <div className="controlsContainer">
+        <div className="controls">
+          {playing ? (
+            <img
+              onClick={() => videoHandler("pause")}
+              className="controlsIcon--small"
+              alt=""
+              src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/9kEQLY.png"
+            />
+          ) : (
+            <img
+              onClick={() => videoHandler("play")}
+              className="controlsIcon--small"
+              alt=""
+              src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/45CUI9.png"
+            />
+          )}
+        </div>
+      </div>
       </div>
 
       <div id="imgSrcz">
