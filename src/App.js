@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useRef, useState, useLayoutEffect, useReducer } from "react";
 //import "@aws-amplify/ui-react/styles.css";
 import { Storage } from 'aws-amplify';
 import { API } from "aws-amplify";
@@ -172,9 +172,11 @@ function Upload() {
     
         }, []);
 
+        const [_, forceUpdate] = useReducer((x) => x + 1, 0);
+
       function errorCheck() {
       if (namess.length === 0) {
-        renderSrc.current = false;
+        forceUpdate;
       }
     }
     errorCheck()
