@@ -118,7 +118,7 @@ function Upload() {
         console.log('Failed to copy');
       })};
    
-      const [models, setData] = useState();
+      const [models, setData] = useState([0]);
       const [description, setDescription] = useState([0]);
       const [rname, setName] = useState([0]);
       const [fname, setFileName] = useState([0]);
@@ -166,9 +166,9 @@ function Upload() {
           }
 
          
-            useEffect(() => {
-              query();
-            }, []);
+          if (models == 0){
+            query();
+          }
 
           
           
