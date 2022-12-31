@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useRef, useState, useLayoutEffect, useReducer } from "react";
+import React, { useRef, useState, useEffect, useReducer } from "react";
 //import "@aws-amplify/ui-react/styles.css";
 import { Storage } from 'aws-amplify';
 import { API } from "aws-amplify";
@@ -162,8 +162,12 @@ function Upload() {
     
           return;
           }
-    
-          query();
+
+
+          useEffect(() => {
+            query();
+          }, []);
+          
     
       
 
