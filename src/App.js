@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useRef, useState, useLayoutEffect, useReducer } from "react";
+import React, { useRef, useState, useEffect, useReducer } from "react";
 //import "@aws-amplify/ui-react/styles.css";
 import { Storage } from 'aws-amplify';
 import { API } from "aws-amplify";
@@ -126,6 +126,10 @@ function Upload() {
       const [currentTime, setCurrentTime] = useState(0);
       const [videoTime, setVideoTime] = useState(0);
       const firstUpdate = useRef(true);
+
+      if (models === [0]) {
+        query();
+      }
     
         async function query() {
             const models = await DataStore.query(Image, c => c.image.contains(key));
@@ -161,21 +165,15 @@ function Upload() {
             setKeyss(gKey);
             console.log("got Key", gKey);
             
+             
           return;
           }
           
+          useEffect(() => {
+            query();
+          }, []);
 
-          useLayoutEffect(() => {
-            if (firstUpdate.current) {
-              firstUpdate.current = false;
-              query();
-              return;
-            }
-           
-            console.log("componentDidUpdateFunction");
-          });
-    
-
+         
     
       const videoHandler = (control) => {
         if (control === "play") {
