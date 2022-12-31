@@ -104,6 +104,14 @@ function Upload() {
   );
   }
 
+  function useForceUpdate(){
+    const [value, setValue] = useState(0); // integer state
+    console.log("updated");
+    return () => setValue(value => value + 1); // update state to force render
+    // An function that increment 👆🏻 the previous state like here 
+    // is better than directly setting `value + 1`
+}
+
   function VView() {
     const key = window.location.pathname.slice(1);
     console.log(key)
@@ -127,9 +135,7 @@ function Upload() {
       const [videoTime, setVideoTime] = useState(0);
       const firstUpdate = useRef(true);
 
-      if (models === [0]) {
-        query();
-      }
+
     
         async function query() {
             const models = await DataStore.query(Image, c => c.image.contains(key));
@@ -172,7 +178,8 @@ function Upload() {
           useEffect(() => {
             query();
           }, []);
-
+          
+          const forceUpdate = useForceUpdate();
          
     
       const videoHandler = (control) => {
@@ -195,7 +202,6 @@ function Upload() {
     return (
       
       <div className="App" >
-
       <div className="Image">
       <div className="logo"><img className="logoimg" src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/s6e2El.png" /></div>
 
