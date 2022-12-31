@@ -119,10 +119,10 @@ function Upload() {
       })};
    
       const [models, setData] = useState([0]);
-      const [imagess, setDescription] = useState([0]);
-      const [namess, setName] = useState([0]);
-      const [filenamess, setFileName] = useState([0]);
-      const [getKeyss, setKeyss] = useState([0]);
+      const [description, setDescription] = useState([0]);
+      const [rname, setName] = useState([0]);
+      const [fname, setFileName] = useState([0]);
+      const [gKey, setKeyss] = useState([0]);
       const videoRef = useRef(null);
       const [playing, setPlaying] = useState(false);
       const [currentTime, setCurrentTime] = useState(0);
@@ -138,8 +138,6 @@ function Upload() {
             setData(models);
             console.log(models);
 
-
-    
             const description = models.map(models => models.description)
             setDescription(description);
           
@@ -157,8 +155,6 @@ function Upload() {
             const rname = models.map(models => models.name)
             setName(rname);
 
-            
-    
             const fname = models.map(models => models.filename)
             setFileName(fname);
 
@@ -169,18 +165,15 @@ function Upload() {
           return;
           }
 
-          function dripz() {
-            const statez = true;
-            setCount(statez);
-          }
+         
+            useEffect(() => {
+              query();
+            }, []);
 
           
           
 
-          useEffect(() => {
-            query();
-            dripz();
-          }, [setStates]);
+         
          
     
       const videoHandler = (control) => {
@@ -196,7 +189,7 @@ function Upload() {
       };
 
 
-    const titleName = namess;
+    const titleName = rname;
     const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`
     const vidUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}#t=0.1`;;
     
