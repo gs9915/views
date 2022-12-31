@@ -46,8 +46,8 @@ html, body{height:100%;display:grid;background-color: rgb(239, 239, 239);}
 
 .share {
   background-color:#7428ff;
-  width:70px;
-  height:70px;
+  width:40px;
+  height:40px;
   color:#fff;
   border:none;
   border-radius:70px;
@@ -100,7 +100,7 @@ td {
   opacity:0;
   animation-name: animation;
   animation-duration: 3s;
-  width:70%;
+  width:80%;
   line-height: 4.35;
   text-align:right;
   color:rgb(0, 217, 36);
@@ -112,7 +112,7 @@ td {
 .linkCopied1{
   display:block;
   opacity:0;
-  width:70%;
+  width:80%;
   text-align: right;
   margin-right:20px;
   font-size: 1em;
@@ -134,6 +134,7 @@ td {
   display: inline-flex;
   line-height: 4;
   width:100%;
+  height:40px;
   margin-bottom: 0.67em;
 }
 

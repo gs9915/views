@@ -231,12 +231,12 @@ function Upload() {
       <div className="sendTo">
         <div className="linkCopied1" id="link1">Link Copied!</div>
         <div className="linkCopied" id="link">Link Copied!</div>
-        <button className="share" onClick={copyToClipboard}> <i class="fa-solid fa-share"></i> </button>  
+        <button className="share" onClick={copyToClipboard}> <img style={{width:"17px", height:"17px"}}src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/5Zpd08.png" /> </button>  
        </div>
 
       <div id="videoo">
 
-      <video ref={videoRef} id="video1" className="vidSrc" unmuted loop playsInline preload="auto" controlsList="nofullscreen nodownload">
+      <video ref={videoRef} id="video1" className="vidSrc"  unmuted loop playsInline preload="auto" controlsList="nofullscreen nodownload">
       
         <source src={vidUrl}></source>
       </video>

@@ -35,3 +35,25 @@
      // file()
 
      //<h1 className="description">{models.map(models => <div>{models.name}</div>)}</h1>
+
+
+
+     <div className="controlsContainer">
+     <div className="controls">
+       {playing ? (
+         <img
+           onClick={() => videoHandler("pause")}
+           className="controlsIcon--small"
+           alt=""
+           src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/9kEQLY.png"
+         />
+       ) : (
+         <img
+           onClick={() => videoHandler("play")}
+           className="controlsIcon--small"
+           alt=""
+           src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/45CUI9.png"
+         />
+       )}
+     </div>
+   </div>
