@@ -1,10 +1,12 @@
 import './App.css';
-import React, { useRef, useState, useEffect, useReducer } from "react";
+import React, { useRef, useState, useLayoutEffect, useReducer } from "react";
 //import "@aws-amplify/ui-react/styles.css";
 import { Storage } from 'aws-amplify';
 import { API } from "aws-amplify";
 import { DataStore } from '@aws-amplify/datastore';
 import { Image } from './models';
+import ReactDOM from 'react-dom'
+
 
 
 
@@ -113,18 +115,17 @@ function Upload() {
       }, function(err) {
         console.log('Failed to copy');
       })};
-  
+   
       const [models, setData] = useState([0]);
       const [imagess, setDescription] = useState([0]);
       const [namess, setName] = useState([0]);
       const [filenamess, setFileName] = useState([0]);
       const [getKeyss, setKeyss] = useState([0]);
-
       const videoRef = useRef(null);
       const [playing, setPlaying] = useState(false);
       const [currentTime, setCurrentTime] = useState(0);
       const [videoTime, setVideoTime] = useState(0);
-    
+      const firstUpdate = useRef(true);
     
         async function query() {
             const models = await DataStore.query(Image, c => c.image.contains(key));
@@ -159,20 +160,22 @@ function Upload() {
             const gKey = models.map(models => models.image)
             setKeyss(gKey);
             console.log("got Key", gKey);
-    
+            
           return;
           }
-
-
-          useEffect(() => {
-            query();
-          }, []);
           
-    
-      
 
-       
-     
+          useLayoutEffect(() => {
+            if (firstUpdate.current) {
+              firstUpdate.current = false;
+              query();
+              return;
+            }
+           
+            console.log("componentDidUpdateFunction");
+          });
+    
+
     
       const videoHandler = (control) => {
         if (control === "play") {
@@ -193,7 +196,7 @@ function Upload() {
     
     return (
       
-      <div className="App">
+      <div className="App" >
 
       <div className="Image">
       <div className="logo"><img className="logoimg" src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/s6e2El.png" /></div>
@@ -241,6 +244,7 @@ function Upload() {
       </div>
     )
   }
+
 
   function App() {
     const windows = window.location.pathname;
