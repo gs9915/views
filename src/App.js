@@ -134,9 +134,6 @@ function Upload() {
         async function query() {
 
 
-          const statez = true;
-          setCount(statez);
-
             const models = await DataStore.query(Image, c => c.image.contains(key));
             setData(models);
             console.log(models);
@@ -171,11 +168,18 @@ function Upload() {
              
           return;
           }
+
+          function dripz() {
+            const statez = true;
+            setCount(statez);
+          }
+
+          
           
 
           useEffect(() => {
             query();
-
+            dripz();
           }, [setStates]);
          
     
