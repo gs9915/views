@@ -176,7 +176,7 @@ function Upload() {
 
       function errorCheck() {
       if (namess.length === 0) {
-        forceUpdate;
+        renderSrc.current = false;
       }
     }
     errorCheck()
