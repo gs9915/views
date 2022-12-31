@@ -30,15 +30,21 @@ function Upload() {
     return resultid;
   }
   // makeid
-  const result = await Storage.put(makeid(6), file)
+  const result = await Storage.put(makeid(6) + file.name.substring(file.name.lastIndexOf('.')+0, file.name.length), file)
+  const filename = result.key.substring(0,result.key.lastIndexOf('.'));
   console.log({ result })
   const datastores = await DataStore.save(
     new Image({
 		"image": `${result.key}`,
 		"name": "name",
-		"description": `${extension}`
+		"description": `${extension}`,
+    "filename": `${filename}`
 	})
 );
+
+ const drip = filename;
+ console.log(drip);
+
   window.x = result.key;
   console.log(window.x)
   document.getElementById("submit").style.display="none";
@@ -161,7 +167,39 @@ function Upload() {
   
       }, []);
 
-   
+      const [filenamess, setFileName] = useState([0]);
+      const firstRenders = useRef(true);
+      useEffect(() => {
+        firstRenders.current = false;
+        async function checkFileName() {
+          const filenamess = await DataStore.query(Image, c => c.image.contains(key));
+          const fname = filenamess.map(filenamess => filenamess.filename)
+          setFileName(fname);
+          console.log(fname);
+        }
+        checkFileName();
+    
+        }, []);
+
+    const realKey = filenamess;
+    console.log(realKey)
+
+    const [getKeyss, setKeyss] = useState([0]);
+    const firstRenderss = useRef(true);
+    useEffect(() => {
+      firstRenderss.current = false;
+      async function checkKeyss() {
+        const keyss = await DataStore.query(Image, c => c.image.contains(key));
+        const gKey = keyss.map(keyss => keyss.image)
+        setKeyss(gKey);
+        console.log("got Key", gKey);
+      }
+      checkKeyss();
+  
+      }, []);
+
+    const realKeys = getKeyss;
+    console.log(realKeys);
     const titleName = namess;
     const imgUrl = `https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/${key}`;
     
@@ -177,7 +215,7 @@ function Upload() {
        </div>
 
       <div id="videoo">
-      <video className="vidSrc" controls muted>
+      <video className="vidSrc" controls muted loop playsInline controlsList="nofullscreen nodownload">
         <source src={imgUrl}></source>
       </video>
       </div>

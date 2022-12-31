@@ -15,6 +15,7 @@ type EagerImage = {
   readonly image: string;
   readonly name: string;
   readonly description?: string | null;
+  readonly filename?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
@@ -28,6 +29,7 @@ type LazyImage = {
   readonly image: string;
   readonly name: string;
   readonly description?: string | null;
+  readonly filename?: string | null;
   readonly createdAt?: string | null;
   readonly updatedAt?: string | null;
 }
