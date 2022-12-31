@@ -154,6 +154,10 @@ function Upload() {
             const rname = models.map(models => models.name)
             setName(rname);
             console.log(rname);
+
+            if (rname.length === 0) {
+              window.location.reload();
+            }
     
             const fname = models.map(models => models.filename)
             setFileName(fname);
@@ -169,6 +173,8 @@ function Upload() {
           query();
     
         }, []);
+
+      
     
       const videoHandler = (control) => {
         if (control === "play") {
