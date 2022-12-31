@@ -228,11 +228,7 @@ function Upload() {
       <div className="App">
 
       <div className="Image">
-      <div className="sendTo">
-        <div className="linkCopied1" id="link1">Link Copied!</div>
-        <div className="linkCopied" id="link">Link Copied!</div>
-        <button className="share" onClick={copyToClipboard}> <img style={{width:"17px", height:"17px"}}src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/5Zpd08.png" /> </button>  
-       </div>
+      <div className="logo"><img className="logoimg" src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/s6e2El.png" /></div>
 
       <div id="videoo">
 
@@ -254,7 +250,7 @@ function Upload() {
               onClick={() => videoHandler("play")}
               className="controlsIcon--small"
               alt=""
-              src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/45CUI9.png"
+              src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/kuUwhW.png"
             />
           )}
         </div>
@@ -268,9 +264,12 @@ function Upload() {
       <div className="meta">
      
       <h1 className="description"><div>{titleName}</div></h1>
-      <div className="logo"><img className="logoimg" src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/uploadi.png" /></div>
+      <div className="sendTo">
+        <button className="share" onClick={copyToClipboard}> <img style={{width:"17px", height:"17px",padding:"3px 0 0 0"}}src="https://viewsd0291515dedc415db669bdf57a2b4cf685846-staging.s3.us-east-2.amazonaws.com/public/5Zpd08.png" /> </button>  
+       </div>
       </div>
       </div>
+      
       </div>
     )
   }
