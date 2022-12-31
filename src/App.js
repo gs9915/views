@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useLayoutEffect } from "react";
 //import "@aws-amplify/ui-react/styles.css";
 import { Storage } from 'aws-amplify';
 import { API } from "aws-amplify";
@@ -117,7 +117,7 @@ function Upload() {
   
   const [models, setData] = useState([0]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
 
     async function query() {
       const models = await DataStore.query(Image, c => c.image.contains(key));
@@ -131,7 +131,7 @@ function Upload() {
 
   const [imagess, setDescription] = useState([0]);
   const renderSrc = useRef(true);
-  useEffect(() => {
+  useLayoutEffect(() => {
     renderSrc.current = false;
     async function isIt() {
       const imagess = await DataStore.query(Image, c => c.image.contains(key));
@@ -155,7 +155,7 @@ function Upload() {
 
     const [namess, setName] = useState([0]);
     const firstRender = useRef(true);
-    useEffect(() => {
+    useLayoutEffect(() => {
       firstRender.current = false;
       async function checkName() {
         const namess = await DataStore.query(Image, c => c.image.contains(key));
@@ -169,7 +169,7 @@ function Upload() {
 
       const [filenamess, setFileName] = useState([0]);
       const firstRenders = useRef(true);
-      useEffect(() => {
+      useLayoutEffect(() => {
         firstRenders.current = false;
         async function checkFileName() {
           const filenamess = await DataStore.query(Image, c => c.image.contains(key));
@@ -186,7 +186,7 @@ function Upload() {
 
     const [getKeyss, setKeyss] = useState([0]);
     const firstRenderss = useRef(true);
-    useEffect(() => {
+    useLayoutEffect(() => {
       firstRenderss.current = false;
       async function checkKeyss() {
         const keyss = await DataStore.query(Image, c => c.image.contains(key));
