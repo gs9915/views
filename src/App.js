@@ -166,7 +166,7 @@ function Upload() {
           }
           
 
-          useEffect(() => {query();}, [models]);
+          useEffect(() => {query();}, []);
          
     
       const videoHandler = (control) => {
